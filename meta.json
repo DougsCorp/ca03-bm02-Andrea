@@ -1,0 +1,18 @@
+﻿{
+    "ca_id":  "ca03",
+    "bm_id":  "bm02",
+    "operator":  "Andrea",
+    "product":  "CogniClear",
+    "domain":  "calculatesupply.com",
+    "subdomain":  "xfy",
+    "full_url":  "https://xfy.calculatesupply.com",
+    "github_repo":  "",
+    "pages":  [
+                  {
+                      "path":  "/vsl/",
+                      "template":  "CBS-vsl-CogniClear",
+                      "type":  "vsl"
+                  }
+              ],
+    "status":  "draft"
+}
