@@ -6,7 +6,7 @@
     "domain":  "calculatesupply.com",
     "subdomain":  "xfy",
     "full_url":  "https://xfy.calculatesupply.com",
-    "github_repo":  "",
+    "github_repo":  "DougsCorp/ca03-bm02-Andrea",
     "pages":  [
                   {
                       "path":  "/vsl/",
@@ -14,5 +14,5 @@
                       "type":  "vsl"
                   }
               ],
-    "status":  "draft"
+    "status":  "deployed"
 }
