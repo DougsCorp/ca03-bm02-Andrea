@@ -9,10 +9,11 @@
     "github_repo":  "DougsCorp/ca03-bm02-Andrea",
     "pages":  [
                   {
-                      "path":  "/vsl/",
+                      "path":  "/vsl1/",
                       "template":  "CBS-vsl-CogniClear",
                       "type":  "vsl"
                   }
               ],
     "status":  "deployed"
 }
+
