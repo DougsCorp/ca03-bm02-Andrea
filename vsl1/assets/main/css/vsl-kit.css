@@ -1,4 +1,4 @@
-/* vsl-kit.css — H&W VSL mechanics, identical on every page.
+﻿/* vsl-kit.css — H&W VSL mechanics, identical on every page.
    Copy this file UNEDITED to the page's assets/main/css/ and load it BEFORE
    the page's own stylesheet. The page skins the kit through the variables
    below and through its own rules; mechanics live here.
@@ -113,6 +113,12 @@ body.is-stripped .vsl-video {
   position: sticky;
   top: 0;
   z-index: 30;
+}
+/* CTA inside .vsl-video: sticks with the player instead of sliding under it. */
+body.is-stripped .vsl-video .vsl-cta {
+  position: relative;
+  z-index: 1;
+  background: var(--vsl-bg);
 }
 
 .vsl-video__gutter {
