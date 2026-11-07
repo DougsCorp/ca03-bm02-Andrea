@@ -252,6 +252,19 @@
         outline: none;
       }
 
+      .question__ask {
+        display: block;
+        margin-top: 14px;
+        padding: 12px 14px 11px;
+        border-radius: 12px;
+        background: var(--gold);
+        color: var(--navy);
+        font-size: 0.9em;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: 0;
+      }
+
       .ready {
         margin: 0;
         text-align: center;
@@ -741,17 +754,17 @@
           },
           {
             self: {
-              title: "A short free video shows something that's bringing the mental sharpness of a 20-year-old back to people over 50. How do you want to watch it?",
+              title: "A short free video shows something that's bringing the mental sharpness of a 20-year-old back to people over 50.",
+              ask: "This video only lets a limited number of people watch at the same time. Do you plan to watch it all the way through?",
               options: [
-                { value: "ads", label: "Watch with ads" },
-                { value: "noads", label: "Watch with no ads", note: "Heads up: only 4 spots left up front", primary: true }
+                { value: "yes", label: "Yes, I'll watch it all the way through.", note: "If the video doesn't load, it's because it was already removed.", primary: true }
               ]
             },
             other: {
-              title: "A short free video shows something that's bringing the mental sharpness of a 20-year-old back for someone over 50. How do you want to watch it?",
+              title: "A short free video shows something that's bringing the mental sharpness of a 20-year-old back for someone over 50.",
+              ask: "This video only lets a limited number of people watch at the same time. Do you plan to watch it all the way through?",
               options: [
-                { value: "ads", label: "Watch with ads" },
-                { value: "noads", label: "Watch with no ads", note: "Heads up: only 4 spots left up front", primary: true }
+                { value: "yes", label: "Yes, I'll watch it all the way through.", note: "If the video doesn't load, it's because it was already removed.", primary: true }
               ]
             }
           }
@@ -838,7 +851,14 @@
         function renderQuestion() {
           var q = currentQuestion();
           countEl.textContent = "Question " + (state.step + 1) + " of " + TOTAL + ".";
-          titleEl.textContent = q.title;
+          titleEl.textContent = "";
+          titleEl.appendChild(document.createTextNode(q.title));
+          if (q.ask) {
+            var ask = document.createElement("span");
+            ask.className = "question__ask";
+            ask.textContent = q.ask;
+            titleEl.appendChild(ask);
+          }
           answersEl.innerHTML = "";
           q.options.forEach(function (opt) {
             var btn = document.createElement("button");
