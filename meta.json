@@ -1,19 +1,24 @@
-﻿{
-  "ca_id": "ca03",
-  "bm_id": "bm02",
-  "operator": "Andrea",
-  "product": "CogniClear",
-  "domain": "calculatesupply.com",
-  "subdomain": "xfy",
-  "full_url": "https://xfy.calculatesupply.com",
-  "github_repo": "DougsCorp/ca03-bm02-Andrea",
-  "pages": [
-    {
-      "type": "vsl",
-      "template": "CBS-vsl-CogniClear",
-      "path": "/vsl1/"
-    }
-  ],
-  "status": "deployed",
-  "meta_pixel_id": "1713214040200404"
+{
+    "ca_id":  "ca03",
+    "bm_id":  "bm02",
+    "operator":  "Andrea",
+    "product":  "CogniClear",
+    "domain":  "calculatesupply.com",
+    "subdomain":  "xfy",
+    "full_url":  "https://xfy.calculatesupply.com",
+    "github_repo":  "DougsCorp/ca03-bm02-Andrea",
+    "pages":  [
+                  {
+                      "path":  "/vsl1/",
+                      "template":  "Quiz-ps-CogniClear",
+                      "type":  "ps"
+                  },
+                  {
+                      "path":  "/vsl1/pv-cognC/",
+                      "template":  "CBS-vsl-CogniClear",
+                      "type":  "vsl"
+                  }
+              ],
+    "status":  "deployed",
+    "meta_pixel_id":  "1713214040200404"
 }
