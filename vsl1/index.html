@@ -1145,12 +1145,25 @@
         "use strict";
 
         var KEY = "cogniclearQuizV2";
+        var QUIZ_ID = "cogniclear_quiz_v2";
+        var QUIZ_VERSION = "v2";
         var PLAYER_SRC = "https://scripts.converteai.net/1320eaf7-bb98-48e6-a7f9-410474dd1425/ab-test/6ae5035b135e42c5e6d3c2d8/player.js";
         var PLAYER_ID = "ab-6ae5035b135e42c5e6d3c2d8";
         var TRACK_SRC = "https://cdn.nlabs.cloud/assets/main/js/affiliate-trackcontrol.min.js";
         var PIXEL_ID = "6ae67e52082223bd7e4a1b64";
         var PIXEL_SRC = "https://cdn.utmify.com.br/scripts/pixel/pixel.js";
         var TOTAL = 5;
+        var QUESTION_IDS = ["q1_who", "q2_age", "q3_goal", "q4_want_back", "q5_watch_commit"];
+
+        function trackGa(name, params) {
+          try {
+            if (typeof gtag !== "function") return;
+            var payload = params || {};
+            payload.quiz_id = QUIZ_ID;
+            payload.quiz_version = QUIZ_VERSION;
+            gtag("event", name, payload);
+          } catch (e) {}
+        }
 
         var AGES = [
           { value: "under60", label: "Under 60" },
@@ -1411,6 +1424,12 @@
         function choose(value) {
           if (state.vsl || scoring) return;
           if (state.step === 0) state.persona = value;
+          trackGa("quiz_answer", {
+            quiz_step: state.step + 1,
+            question_id: QUESTION_IDS[state.step] || ("q" + (state.step + 1)),
+            answer_value: value,
+            persona: state.persona || value
+          });
           lockHistory();
           if (state.step >= TOTAL - 1) {
             openVsl();
@@ -1532,7 +1551,14 @@
 
         document.addEventListener("click", function (event) {
           var anchor = event.target.closest ? event.target.closest("a.buylink") : null;
-          if (anchor) carryParams(anchor);
+          if (!anchor) return;
+          carryParams(anchor);
+          if (anchor.classList.contains("pack")) {
+            trackGa("quiz_checkout_click", {
+              pack: anchor.getAttribute("data-pack") || "",
+              persona: state.persona || ""
+            });
+          }
         }, true);
 
         function startStock() {
@@ -1617,6 +1643,9 @@
           document.getElementById("vsl-title").focus();
           if (vslStarted) return;
           vslStarted = true;
+          trackGa("quiz_complete", {
+            persona: state.persona || ""
+          });
           window._plt = Date.now();
           injectUtmify();
           try {
@@ -1634,6 +1663,12 @@
         }
 
         if (state.step > 0 || state.vsl) lockHistory();
+        if (!state.vsl) {
+          trackGa("quiz_start", {
+            quiz_step: state.step + 1,
+            persona: state.persona || ""
+          });
+        }
         render();
         if (state.vsl) openVsl();
       })();
