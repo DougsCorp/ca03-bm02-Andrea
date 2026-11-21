@@ -483,45 +483,30 @@
 
       .offer { margin-top: 14px; }
 
-      .checkout {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        min-height: 62px;
-        padding: 12px 16px;
-        overflow: hidden;
-        border-radius: 12px;
-        background: linear-gradient(180deg, var(--green), var(--green-bottom));
-        color: #fff;
-        font-size: clamp(17px, 4.4vw, 22px);
-        font-weight: 800;
+      .offer__title {
+        margin: 0 0 10px;
+        color: #038a49;
+        font-size: clamp(20px, 5vw, 26px);
+        font-weight: 900;
         line-height: 1.15;
-        letter-spacing: 0.01em;
+        letter-spacing: -0.02em;
         text-align: center;
-        text-decoration: none;
-        text-shadow: 0 2px 6px rgba(6, 68, 30, 0.35);
-        touch-action: manipulation;
+        text-transform: uppercase;
       }
 
-      .offer.is-shown .checkout {
-        animation: ctaPulse 1.5s ease-in-out infinite;
+      .offer__title span {
+        display: block;
+        margin-top: 2px;
+        color: #000;
+        font-size: 0.88em;
       }
-
-      .checkout:focus-visible {
-        outline: 3px solid var(--navy);
-        outline-offset: 3px;
-      }
-
-      .checkout:active { filter: brightness(0.94); }
 
       .stock {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        margin: 12px 0 0;
+        margin: 0 0 14px;
         color: #d92626;
         font-size: 16px;
         font-weight: 800;
@@ -538,9 +523,295 @@
 
       .offer.is-shown .stock__dot { animation: dotPulse 1.6s ease-out infinite; }
 
-      @keyframes ctaPulse {
-        0%, 100% { transform: scale(1); box-shadow: 0 10px 22px rgba(21, 156, 72, 0.3); }
-        50% { transform: scale(1.03); box-shadow: 0 16px 32px rgba(53, 212, 111, 0.45); }
+      .packs {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .pack {
+        display: block;
+        width: 100%;
+        padding: 3px;
+        border-radius: 18px;
+        background: #fff;
+        color: var(--ink);
+        text-decoration: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.28);
+        overflow: hidden;
+        touch-action: manipulation;
+      }
+
+      .pack:focus-visible {
+        outline: 3px solid var(--navy);
+        outline-offset: 3px;
+      }
+
+      .pack__wrap {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .pack__badge {
+        grid-area: title;
+        padding: 0.25em 0.5em;
+        background: #dcdcdc;
+        color: #111;
+        font-size: 0.9em;
+        font-weight: 800;
+        font-style: italic;
+        text-align: center;
+        text-transform: none;
+      }
+
+      .pack__media {
+        grid-area: img;
+        text-align: center;
+      }
+
+      .pack__supply {
+        padding: 0;
+        text-align: center;
+        line-height: 1;
+        font-size: 0.8em;
+        font-weight: 700;
+      }
+
+      .pack__supply b {
+        display: block;
+        font-size: 1.25em;
+        letter-spacing: -0.02em;
+      }
+
+      .pack__media img {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        max-height: 150px;
+        height: auto;
+        margin: 0 auto;
+        object-fit: contain;
+      }
+
+      .pack__info {
+        grid-area: info;
+        text-align: center;
+      }
+
+      .pack__unit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25em;
+        width: fit-content;
+        margin: 0 auto;
+        line-height: 1;
+        text-align: left;
+      }
+
+      .pack__unit b {
+        font-size: 2.8em;
+        letter-spacing: -0.06em;
+        font-weight: 900;
+      }
+
+      .pack__unit sup {
+        font-size: 0.45em;
+        top: -0.5em;
+      }
+
+      .pack__unit span {
+        font-size: 0.65em;
+        font-weight: 800;
+        line-height: 1.05;
+        text-transform: uppercase;
+      }
+
+      .pack__savings {
+        margin-top: 2px;
+        font-size: 0.65em;
+        font-weight: 800;
+      }
+
+      .pack__savings > div {
+        padding: 0.5em 0;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.42);
+      }
+
+      .pack__savings > div:first-child {
+        border-top: 1px dashed rgba(0, 0, 0, 0.42);
+        color: #c81f1f;
+      }
+
+      .pack__savings > div:nth-child(2) {
+        display: none;
+      }
+
+      .pack__savings > div > span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25em;
+        letter-spacing: -0.4px;
+        line-height: 1;
+      }
+
+      .pack__savings > div > span::before {
+        content: "";
+        width: 0.95em;
+        height: 0.95em;
+        flex: 0 0 auto;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M21.4 11.6l-9-9A1.5 1.5 0 0 0 11.3 2H4.5A1.5 1.5 0 0 0 3 3.5v6.8c0 .4.16.78.44 1.06l9 9a1.5 1.5 0 0 0 2.12 0l6.84-6.84a1.5 1.5 0 0 0 0-2.12zM7.25 8a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 7.25 8z'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M21.4 11.6l-9-9A1.5 1.5 0 0 0 11.3 2H4.5A1.5 1.5 0 0 0 3 3.5v6.8c0 .4.16.78.44 1.06l9 9a1.5 1.5 0 0 0 2.12 0l6.84-6.84a1.5 1.5 0 0 0 0-2.12zM7.25 8a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 7.25 8z'/%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .pack__buy {
+        grid-area: footer;
+      }
+
+      .pack__cta {
+        margin: 0 0.25em;
+        padding: 0.7em 0.65em;
+        border-radius: 0.5em;
+        background: linear-gradient(to top, #0f8340 50%, #12a04d 51%);
+        box-shadow: 0 -4px rgba(0, 0, 0, 0.05) inset;
+        font-size: 1.15em;
+        font-weight: 900;
+        font-style: italic;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .pack__cta span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3em;
+        color: #fff;
+      }
+
+      .pack__cta span::before {
+        content: "";
+        width: 1em;
+        height: 1em;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2'/%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .pack__totals {
+        grid-area: totals;
+        padding-bottom: 0.35em;
+        font-size: 0.8em;
+        text-align: center;
+        line-height: 1.25;
+      }
+
+      .pack__total s {
+        text-decoration-color: #e11d1d;
+        text-decoration-thickness: 2px;
+      }
+
+      .pack__total b {
+        font-weight: 900;
+      }
+
+      .pack__ship {
+        font-weight: 800;
+      }
+
+      .pack__ship span {
+        color: #dc3545;
+      }
+
+      /* Mobile: mesmo grid da referência alpherc */
+      .pack__wrap {
+        display: grid;
+        grid-template-areas:
+          "header header"
+          "title info"
+          "img info"
+          "img totals"
+          "footer footer";
+        grid-template-columns: 1fr 1fr;
+        column-gap: 0.5em;
+        align-items: center;
+        padding: 0.5em 0.35em 0.45em;
+      }
+
+      .pack__badge {
+        background: transparent;
+        color: #c81f1f;
+        padding: 0;
+      }
+
+      .pack--featured {
+        border: 4px solid #fff;
+        filter: drop-shadow(0 0 2.5px #0e4f45);
+        box-shadow: 0 0 10px rgba(14, 79, 69, 0.55);
+        color: #fff;
+        text-shadow: 0 2px rgba(0, 0, 0, 0.45);
+      }
+
+      .pack--featured .pack__wrap {
+        grid-template-areas:
+          "header header"
+          "img info"
+          "img totals"
+          "footer footer";
+        background:
+          radial-gradient(circle at 50% 18%, #1b6b5a 0%, #0e4f45 42%, #062820 100%);
+      }
+
+      .pack--featured .pack__badge {
+        grid-area: header;
+        margin: -0.55em 0 0.5em;
+        padding: 0.25em;
+        background: #fff;
+        color: #0e4f45;
+        font-size: 1.05em;
+        text-shadow: none;
+      }
+
+      .pack--featured .pack__supply,
+      .pack--featured .pack__unit,
+      .pack--featured .pack__totals {
+        color: #fff;
+      }
+
+      .pack--featured .pack__savings > div {
+        color: #fff;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.42);
+      }
+
+      .pack--featured .pack__savings > div:first-child {
+        color: #f3d36a;
+        border-top: 1px dashed rgba(255, 255, 255, 0.42);
+      }
+
+      .pack--featured .pack__savings > div:nth-child(2) {
+        display: block;
+        color: #f7f3e4;
+      }
+
+      .pack--featured .pack__cta {
+        background-image: linear-gradient(to top, #c9a227 50%, #f0d56a 51%);
+        text-shadow: none;
+      }
+
+      .pack--featured .pack__cta span {
+        color: #1a1a1a;
+      }
+
+      .pack--featured .pack__ship,
+      .pack--featured .pack__ship span {
+        color: #f3d36a;
+      }
+
+      .pack--featured .pack__total s {
+        text-decoration-color: #ffb4b4;
       }
 
       @keyframes dotPulse {
@@ -594,8 +865,88 @@
         .modal__views { font-size: 18px; }
         .modal__panel { width: min(1080px, calc(100vw - 48px)); padding: 28px 28px 24px; }
         .modal__player { width: min(1000px, 100%); min-height: 0; }
-        .checkout { min-height: 76px; font-size: 28px; }
+        .offer__title { font-size: 32px; }
         .stock { font-size: 22px; }
+
+        .packs {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+          align-items: stretch;
+        }
+
+        .pack[data-pack="1"] { order: 1; }
+        .pack[data-pack="3"] { order: 2; }
+        .pack[data-pack="2"] { order: 3; }
+
+        .pack__wrap {
+          display: block;
+          padding: 0 0 0.35em;
+          text-align: center;
+        }
+
+        .pack__badge {
+          display: block;
+          grid-area: auto;
+          margin: 0;
+          padding: 0.45em 0.5em;
+          background: #dcdcdc;
+          color: #111;
+          font-size: 1em;
+        }
+
+        .pack__media,
+        .pack__info,
+        .pack__buy,
+        .pack__totals {
+          grid-area: auto;
+        }
+
+        .pack__supply {
+          padding: 0.85em 0.5em 0.35em;
+          font-size: 1em;
+        }
+
+        .pack__supply b { font-size: 1.75em; }
+
+        .pack__media img { max-height: 180px; }
+
+        .pack__unit b { font-size: 4em; letter-spacing: -0.04em; }
+        .pack__unit span { font-size: 0.85em; }
+
+        .pack__savings {
+          font-size: 0.7em;
+          max-width: 220px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .pack__savings > div { padding: 0.5em; }
+
+        .pack__cta {
+          margin: 0.5em 0.45em;
+          font-size: 1.25em;
+        }
+
+        .pack__totals {
+          font-size: 0.9em;
+          padding-bottom: 0.75em;
+        }
+
+        .pack--featured .pack__wrap {
+          display: block;
+          padding-bottom: 0.35em;
+        }
+
+        .pack--featured .pack__badge {
+          margin: 0;
+          padding: 0.45em 0.5em;
+          font-size: 1.15em;
+        }
+
+        .pack--featured .pack__savings > div:nth-child(2) {
+          display: block;
+        }
       }
 
       @media (max-width: 759px) {
@@ -604,23 +955,23 @@
         .modal__panel {
           width: 100%;
           border-radius: 18px;
+          padding-left: 12px;
+          padding-right: 12px;
         }
+
+        .offer__title { font-size: 17px; line-height: 1.35; }
+        .stock { font-size: 15px; margin-bottom: 12px; }
       }
 
       @media (prefers-reduced-motion: reduce) {
         .answer:active,
         .answer.is-pressed,
-        .offer.is-shown .checkout,
         .offer.is-shown .stock__dot,
         .scoring__bar {
           animation: none;
         }
 
         .scoring__bar { width: 100%; }
-
-        .offer.is-shown .checkout {
-          transform: none;
-        }
       }
     </style>
   </head>
@@ -668,12 +1019,12 @@
             <p class="modal__loading" id="player-loading">The video is loading.</p>
           </div>
         </div>
-        <div class="esconder offer" id="offer" data-reveal-scroll="end">
-          <a
-            class="checkout buylink"
-            href="https://order.wealthpay.io/ms12lacy18e1?hid=b2lkPW9mZl8zNTIyNjA0JmFpZD1hZmZfODE5Nzg4MiZ1aWQ9YmxfNjQyMTY0MQ%3D%3D&amp;affid=aff_8197882"
-            >CLAIM MY BOTTLES NOW</a
-          >
+        <div class="offer esconder" id="offer" data-reveal-scroll="end">
+          <div class="offer__reveal">
+          <h3 class="offer__title">
+            Congratulations!
+            <span>Select your discount package</span>
+          </h3>
           <p class="sr-only" role="status" data-offer-notice="Your order option is now available below the video."></p>
           <p class="stock">
             <span class="stock__dot" aria-hidden="true"></span>
@@ -687,6 +1038,101 @@
             >
             spots left!
           </p>
+          <div class="packs" role="list">
+            <a
+              class="pack pack--featured buylink smartplayer-scroll-event"
+              role="listitem"
+              href="https://order.wealthpay.io/ms12lacy18e1?hid=b2lkPW9mZl8zNTIyNjA0JmFpZD1hZmZfODE5Nzg4MiZ1aWQ9YmxfNjQyMTY0MQ%3D%3D&amp;affid=aff_8197882"
+              data-pack="3"
+              aria-label="3 Bottles for $99 total"
+            >
+              <div class="pack__wrap">
+                <div class="pack__badge">BEST VALUE!</div>
+                <div class="pack__media">
+                  <div class="pack__supply"><b>3 BOTTLES</b>90 DAYS SUPPLY</div>
+                  <img src="img/img_KtConYiWzLf.webp" alt="3 CogniClear bottles" width="180" height="150" loading="lazy">
+                </div>
+                <div class="pack__info">
+                  <div class="pack__unit"><b><sup>$</sup>33</b><span>PER<br>BOTTLE</span></div>
+                  <div class="pack__savings">
+                    <div><span>YOU SAVE $348!</span></div>
+                    <div><span>78% OFF</span></div>
+                    <div><span>90 DAYS GUARANTEE</span></div>
+                  </div>
+                </div>
+                <div class="pack__buy">
+                  <div class="pack__cta"><span>BUY NOW</span></div>
+                </div>
+                <div class="pack__totals">
+                  <div class="pack__total">Total: <s>$447</s> <b>$99</b></div>
+                  <div class="pack__ship">+ <span>FREE</span> SHIPPING</div>
+                </div>
+              </div>
+            </a>
+
+            <a
+              class="pack buylink"
+              role="listitem"
+              href="https://order.wealthpay.io/ms12lacy18e1?hid=b2lkPW9mZl8zNTIyNjA0JmFpZD1hZmZfODE5Nzg4MiZ1aWQ9YmxfNjQyMTY0MQ%3D%3D&amp;affid=aff_8197882"
+              data-pack="2"
+              aria-label="2 Bottles for $89 total"
+            >
+              <div class="pack__wrap">
+                <div class="pack__badge">Most Popular</div>
+                <div class="pack__media">
+                  <div class="pack__supply"><b>2 BOTTLES</b>60 DAYS SUPPLY</div>
+                  <img src="img/img_5nGjFmhZFvh.webp" alt="2 CogniClear bottles" width="180" height="150" loading="lazy">
+                </div>
+                <div class="pack__info">
+                  <div class="pack__unit"><b><sup>$</sup>44</b><span>PER<br>BOTTLE</span></div>
+                  <div class="pack__savings">
+                    <div><span>YOU SAVE $209!</span></div>
+                    <div><span>70% OFF</span></div>
+                    <div><span>90 DAYS GUARANTEE</span></div>
+                  </div>
+                </div>
+                <div class="pack__buy">
+                  <div class="pack__cta"><span>BUY NOW</span></div>
+                </div>
+                <div class="pack__totals">
+                  <div class="pack__total">Total: <s>$298</s> <b>$89</b></div>
+                  <div class="pack__ship">+ <span>FREE</span> SHIPPING</div>
+                </div>
+              </div>
+            </a>
+
+            <a
+              class="pack buylink"
+              role="listitem"
+              href="https://order.wealthpay.io/ms12lacy18e1?hid=b2lkPW9mZl8zNTIyNjA0JmFpZD1hZmZfODE5Nzg4MiZ1aWQ9YmxfNjQyMTY0MQ%3D%3D&amp;affid=aff_8197882"
+              data-pack="1"
+              aria-label="1 Bottle for $79 total"
+            >
+              <div class="pack__wrap">
+                <div class="pack__badge">Basic</div>
+                <div class="pack__media">
+                  <div class="pack__supply"><b>1 BOTTLE</b>30 DAYS SUPPLY</div>
+                  <img src="img/img_80DKN2hOUU3.webp" alt="1 CogniClear bottle" width="180" height="150" loading="lazy">
+                </div>
+                <div class="pack__info">
+                  <div class="pack__unit"><b><sup>$</sup>79</b><span>PER<br>BOTTLE</span></div>
+                  <div class="pack__savings">
+                    <div><span>YOU SAVE $70!</span></div>
+                    <div><span>47% OFF</span></div>
+                    <div><span>90 DAYS GUARANTEE</span></div>
+                  </div>
+                </div>
+                <div class="pack__buy">
+                  <div class="pack__cta"><span>BUY NOW</span></div>
+                </div>
+                <div class="pack__totals">
+                  <div class="pack__total">Total: <s>$149</s> <b>$79</b></div>
+                  <div class="pack__ship">+ <span>FREE</span> SHIPPING</div>
+                </div>
+              </div>
+            </a>
+          </div>
+          </div>
         </div>
       </div>
     </div>
@@ -698,7 +1144,7 @@
       (function () {
         "use strict";
 
-        var KEY = "cogniclearQuizV1";
+        var KEY = "cogniclearQuizV2";
         var PLAYER_SRC = "https://scripts.converteai.net/1320eaf7-bb98-48e6-a7f9-410474dd1425/ab-test/6ae5035b135e42c5e6d3c2d8/player.js";
         var PLAYER_ID = "ab-6ae5035b135e42c5e6d3c2d8";
         var TRACK_SRC = "https://cdn.nlabs.cloud/assets/main/js/affiliate-trackcontrol.min.js";

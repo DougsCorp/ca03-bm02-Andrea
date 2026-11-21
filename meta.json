@@ -1,4 +1,4 @@
-{
+﻿{
     "ca_id":  "ca03",
     "bm_id":  "bm02",
     "operator":  "Andrea",
@@ -9,16 +9,22 @@
     "github_repo":  "DougsCorp/ca03-bm02-Andrea",
     "pages":  [
                   {
-                      "path":  "/vsl1/",
-                      "template":  "Quiz-ps-CogniClear",
-                      "type":  "ps"
+                      "type":  "ps",
+                      "template":  "Quiz-ps-CogniClear-v2",
+                      "path":  "/vsl1/"
                   },
                   {
-                      "path":  "/vsl1/pv-cognC/",
+                      "type":  "vsl",
                       "template":  "CBS-vsl-CogniClear",
-                      "type":  "vsl"
+                      "path":  "/vsl1/pv-cognC/"
+                  },
+                  {
+                      "type":  "ps",
+                      "template":  "Quiz-ps-CogniClear",
+                      "path":  "/quiz-cogni-v1/"
                   }
               ],
     "status":  "deployed",
-    "meta_pixel_id":  "1713214040200404"
+    "meta_pixel_id":  "1713214040200404",
+    "last_deployed_at":  "2026-11-21T00:26:51Z"
 }
